@@ -43,7 +43,7 @@ def main() :
     ds0 = gds0.read_data()
     ##
 
-    ds0 = ds0[[c.btic, c.ftic]]
+    ds0 = ds0[[c.btic , c.ftic]]
     ds0 = ds0.drop_duplicates()
     ##
     ds0 = ds0.set_index(c.btic)
@@ -53,18 +53,25 @@ def main() :
     ##
     mks = df['f'].notna()
 
-    df.loc[mks, c.ftic] = df.loc[mks, 'f']
+    df.loc[mks , c.ftic] = df.loc[mks , 'f']
     ##
-    df = df.drop(columns=['f'])
+    df = df.drop(columns = ['f'])
     ##
     df = df.drop_duplicates()
+    ##
+
+    msk = df.duplicated(subset = c.cnm, keep = False)
+    df1 = df[msk]
+
+    # df1.to_excel('dup.xlsx', index = False)
+
     ##
 
     assert df[c.cnm].is_unique
     ##
 
     fp = gd.data_fp
-    sprq(df, fp)
+    sprq(df , fp)
     ##
     msg = 'gov by: '
     msg += gu.cur
