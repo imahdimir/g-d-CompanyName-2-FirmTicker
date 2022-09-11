@@ -1,4 +1,4 @@
-# Python 3.10.5 for arm64
+# Python 3.10.5 arm64
 # Mac OS 12.5
 # Apple M1
 
